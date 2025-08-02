@@ -31,8 +31,8 @@ body {
 }
 
 header, footer {
-  background: rgba(0, 0, 0, 0);
-  color: #000000;
+  background: rgba(0, 0, 0, 0.85);
+  color: #f0e442;
   padding: 15px 0;
   position: sticky;
   top: 0;
@@ -42,8 +42,15 @@ header, footer {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 10px;
-  box-shadow: 0 4px 30px rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px #f0e442;
+  border: 1px solid #f0e442;
+  background-color: transparent;
+}
+
+.navbar-glass.container {
+  background-color: transparent !important;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -171,7 +178,8 @@ nav ul li a:hover {
   margin-top: 15px;
 }
 
-.skills-list li {
+.skills-list li,
+.skills-list .skill-item {
   background-color: #f0e442;
   color: #1a1a1a;
   padding: 10px 20px;
@@ -179,6 +187,49 @@ nav ul li a:hover {
   font-weight: 700;
   box-shadow: none;
   animation: fadeInUp 1.6s ease forwards;
+  cursor: default;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.skills-list li:hover,
+.skills-list .skill-item:hover {
+  background-color: #ffff72;
+  color: #000000;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #ffff72;
+}
+
+/* Certifications animation */
+.certifications-container {
+  animation: fadeInUp 1.8s ease forwards;
+  transition: box-shadow 0.3s ease;
+}
+
+.cert-box {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: default;
+  border: 2px solid #f0e442; /* Add yellow outline */
+}
+
+.cert-box:hover {
+  box-shadow: 0 0 30px #ffff72, 0 0 40px #f0e442;
+  transform: scale(1.05);
+}
+
+/* Additional styling for certifications */
+.certifications-wrapper {
+  gap: 30px;
+  border: none; /* Remove outline from container */
+  padding: 0;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.certifications-container {
+  padding: 10px;
+  border-radius: 15px;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 footer {
@@ -198,7 +249,97 @@ footer {
   border-left: 3px solid #f0e442;
 }
 
+/* Navbar brand and nav links color and glow */
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: #f0e442 !important;
+  text-shadow: 0 0 10px #f0e442;
+  transition: color 0.3s ease;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1) brightness(2);
+}
+
+.navbar-nav .nav-item {
+  margin: 0 15px;
+}
+
+/* Remove margin for nav-item that contains d-flex to avoid extra spacing */
+.navbar-nav .nav-item.d-flex {
+  margin: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+/* Ensure icon links have consistent flex properties */
+.navbar-nav .nav-item.d-flex a.text-light {
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  margin-right: 8px;
+}
+
+/* Adjust margins for buttons inside d-flex container */
+.navbar-nav .nav-item.d-flex a.btn {
+  margin-right: 8px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .navbar-nav .nav-item.d-flex {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .navbar-nav .nav-item.d-flex a.btn,
+  .navbar-nav .nav-item.d-flex a.text-light {
+    margin: 0 5px 5px 0;
+  }
+}
+
+/* Media query for iPad Pro screen sizes */
+@media (min-width: 769px) and (max-width: 1366px) {
+  .navbar-nav .nav-item.d-flex {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 0;
+    align-items: center;
+  }
+
+  .navbar-nav .nav-item.d-flex a.btn,
+  .navbar-nav .nav-item.d-flex a.text-light {
+    margin: 0 10px 0 0;
+  }
+}
+
+.navbar-brand {
+  margin-right: 30px;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  color: #ffff72 !important;
+  text-shadow: 0 0 15px #ffff72;
+}
+
 /* Social icons styling */
+.navbar-nav .nav-item.d-flex {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 20px;
+}
+
 .navbar-nav .nav-item.d-flex a {
   display: flex;
   align-items: center;
@@ -408,4 +549,112 @@ footer {
   font-weight: 700;
   font-size: 1rem;
   margin-bottom: 15px;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .projects-grid {
+    justify-content: center;
+  }
+  .project-card {
+    width: 100% !important;
+    height: auto !important;
+  }
+  .about-content {
+    flex-direction: column;
+    padding: 20px;
+  }
+  .about-text {
+    max-width: 100%;
+    text-align: center;
+  }
+  .about-video {
+    width: 100%;
+    iframe {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  nav ul li {
+    margin: 10px 0;
+  }
+  .skills-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .timeline {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+  }
+  .timeline-item {
+    padding-left: 0;
+  }
+  .timeline-marker {
+    left: 0;
+    top: 0;
+  }
+
+  /* Responsive navbar buttons container */
+  .navbar-nav .nav-item.d-flex {
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 0;
+    align-items: center;
+  }
+
+  .navbar-nav .nav-item.d-flex a.btn,
+  .navbar-nav .nav-item.d-flex a.text-light {
+    margin: 0 8px 0 0;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Ensure icons and text align vertically */
+  .navbar-nav .nav-item.d-flex a img {
+    vertical-align: middle;
+  }
+
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .navbar-nav .nav-item.d-flex {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .navbar-nav .nav-item.d-flex a.btn,
+    .navbar-nav .nav-item.d-flex a.text-light {
+      margin: 0 5px 5px 0;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px 10px;
+  }
+  .project-card h3 {
+    font-size: 1.2rem;
+  }
+  .project-card .role {
+    font-size: 0.9rem;
+    padding: 4px 8px;
+  }
+  .project-card .description {
+    font-size: 0.9rem;
+  }
+  .label-yellow {
+    font-size: 0.9rem;
+    padding: 4px 8px;
+  }
 }
